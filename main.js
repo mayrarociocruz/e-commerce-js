@@ -24,32 +24,52 @@ else {
 
 
 
-// Desafio: incorporar arrays 
+//--------------------------------------------------------------------------------------
+
+//----------------------PRIMER ENTREGA DEL PROYECTO FINAL-------------------------------
 
 
-const carritoDeCompras =[]
+
+let entrada = prompt("Ingrese su nombre");
+let salida = "Bienvenido/a a Cloudsport Jujuy " + entrada ;
+alert (salida)
+
+
+// ----------------carrito
+
+const carrito = [];
 
 function agregarAlCarrito(producto){
-
-    carritoDeCompras.push(producto)
-    console.log(carritoDeCompras)
+    console.log("agregaste al carrito " + producto);
+    carrito.push(indumentariaDeportiva1);
+    console.log(carrito);
 }
 
-agregarAlCarrito({id: 1, nombre: "Calzas Adidas", precio: 9000})
-agregarAlCarrito({id: 2, nombre: "Zapatillas Adidas", precio: 14000})
-agregarAlCarrito({id: 3, nombre: "Remera Adidas", precio: 4000})
-agregarAlCarrito({id: 4, nombre: "Zapatillas Topper", precio: 7800})
-agregarAlCarrito({id: 5, nombre: "Zapatillas Fila", precio: 7500})
-agregarAlCarrito({id: 6, nombre: "Zapatillas Nike", precio: 14000})
-agregarAlCarrito({id: 7, nombre: "Zapatillas Puma", precio: 12000}) 
-agregarAlCarrito({id: 8, nombre: "Zapatillas New Balance", precio: 13000})
 
-
-function quitarProductoDelCarrito(idDelProducto){
-    const index = carritoDeCompras.findIndex((producto) => producto.id === idDelProducto);
-    carritoDeCompras.splice(index, 1);
-    console.log(carritoDeCompras);
+function IndumentariaDeportiva(codigo, producto, stock, precio){
+    this.codigo = codigo;
+    this.producto = producto;
+    this.stock = stock;
+    this.precio = precio;    
 }
 
-quitarProductoDelCarrito(1);
-quitarProductoDelCarrito(8);
+const indumentariaDeportiva1 = new IndumentariaDeportiva( 101, "Calzas Adidas", 15, 9000);
+const indumentariaDeportiva2 = new IndumentariaDeportiva( 102, "Zapatillas Adidas", 5, 14000);
+const indumentariaDeportiva3 = new IndumentariaDeportiva( 103, "Remera Adidas", 3, 4000);
+const indumentariaDeportiva4 = new IndumentariaDeportiva( 104, "Zapatillas Topper", 5, 7800);
+const indumentariaDeportiva5 = new IndumentariaDeportiva( 105, "Zapatillas Nike", 2, 14000);
+const indumentariaDeportiva6 = new IndumentariaDeportiva( 106, "Zapatillas Puma", 2, 12000);
+
+console.log(IndumentariaDeportiva);
+
+
+function eliminarDelCarrito(codigo){
+    const index = carrito.findIndex((indumentaria) => indumentaria.codigo === codigo);
+    carrito.splice(index, 1);
+    console.log(carrito);
+}
+
+eliminarDelCarrito(101);
+
+agregarAlCarrito(indumentariaDeportiva3);
+agregarAlCarrito(indumentariaDeportiva2)
