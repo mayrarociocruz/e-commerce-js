@@ -1,10 +1,10 @@
-const listadoNotas = [5, 7, 3];
+const listadoNotas = [5, 7, 3]; //declaracion del array
 
 const auxIndice = 1;
 
 listadoNotas[2]; //3 la posicion 2 en el listado tiene un valor de 3
 listadoNotas[0]; //5 se cuenta desde cero 
-listadoNotas[auxIndice] //7 la constante me diucde que es la posicion 1 y el valor qu hay ahi es 7
+listadoNotas[auxIndice] //7 la constante me dice que es la posicion 1 y el valor qu hay ahi es 7
 
 let contadorDeNotas = 0;
 
@@ -29,30 +29,37 @@ else {
 //----------------------PRIMER ENTREGA DEL PROYECTO FINAL-------------------------------
 
 
-
+//mensaje de bienvenida al usuario
 let entrada = prompt("Ingrese su nombre");
 let salida = "Bienvenido/a a Cloudsport Jujuy " + entrada ;
 alert (salida)
 
 
-// ----------------carrito
+// -----carrito----
 
-const carrito = [];
+const carrito = []; //declaracion de array vacio
 
 function agregarAlCarrito(producto){
     console.log("agregaste al carrito " + producto);
-    carrito.push(indumentariaDeportiva1);
+    function tenemosStock(stock){// validacion de stock
+        if (stock>0){
+            return "Articulo disponible";
+        }else{
+            return "Articulo sin stock";
+        }
+    }
+    carrito.push(indumentariaDeportiva1);// agregamos el producto al carrito con el .push
     console.log(carrito);
 }
 
-
+//objeto funcion constructora
 function IndumentariaDeportiva(codigo, producto, stock, precio){
     this.codigo = codigo;
     this.producto = producto;
     this.stock = stock;
     this.precio = precio;    
 }
-
+//parametros de los objetos
 const indumentariaDeportiva1 = new IndumentariaDeportiva( 101, "Calzas Adidas", 15, 9000);
 const indumentariaDeportiva2 = new IndumentariaDeportiva( 102, "Zapatillas Adidas", 5, 14000);
 const indumentariaDeportiva3 = new IndumentariaDeportiva( 103, "Remera Adidas", 3, 4000);
@@ -62,14 +69,20 @@ const indumentariaDeportiva6 = new IndumentariaDeportiva( 106, "Zapatillas Puma"
 
 console.log(IndumentariaDeportiva);
 
-
+// como elimino un producto del carrito
 function eliminarDelCarrito(codigo){
     const index = carrito.findIndex((indumentaria) => indumentaria.codigo === codigo);
-    carrito.splice(index, 1);
+    carrito.splice(index, 1);//metodo splice elimina uno o varios elementos en cualquier posicion
     console.log(carrito);
 }
 
-eliminarDelCarrito(101);
+eliminarDelCarrito(101); //llamado de la funcion "eliminar al carrito"
 
-agregarAlCarrito(indumentariaDeportiva3);
-agregarAlCarrito(indumentariaDeportiva2)
+agregarAlCarrito(indumentariaDeportiva3);// funcion de agregar al carrito
+agregarAlCarrito(indumentariaDeportiva2);
+
+const totalPrecioCarrito = [ 14000, 4000]
+const total = totalPrecioCarrito.reduce((acumulador, elemento) => acumulador + elemento , 0)
+
+console.log (total)
+
