@@ -81,6 +81,8 @@ eliminarDelCarrito(101); //llamado de la funcion "eliminar al carrito"
 agregarAlCarrito(indumentariaDeportiva3);// funcion de agregar al carrito
 agregarAlCarrito(indumentariaDeportiva2);
 
+
+//total del costo de mi carrito, con el metodo .reduce acumulo cada elemento de mi array 
 const totalPrecioCarrito = [ 14000, 4000]
 const total = totalPrecioCarrito.reduce((acumulador, elemento) => acumulador + elemento , 0)
 
