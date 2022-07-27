@@ -41,13 +41,6 @@ const carrito = []; //declaracion de array vacio
 
 function agregarAlCarrito(producto){
     console.log("agregaste al carrito " + producto);
-    function tenemosStock(stock){// validacion de stock
-        if (stock>0){
-            return "Articulo disponible";
-        }else{
-            return "Articulo sin stock";
-        }
-    }
     carrito.push(indumentariaDeportiva1);// agregamos el producto al carrito con el .push
     console.log(carrito);
 }
@@ -67,7 +60,11 @@ const indumentariaDeportiva4 = new IndumentariaDeportiva( 104, "Zapatillas Toppe
 const indumentariaDeportiva5 = new IndumentariaDeportiva( 105, "Zapatillas Nike", 2, 14000);
 const indumentariaDeportiva6 = new IndumentariaDeportiva( 106, "Zapatillas Puma", 2, 12000);
 
-console.log(IndumentariaDeportiva);
+
+// funcion de agregar al carrito
+agregarAlCarrito(indumentariaDeportiva3);
+agregarAlCarrito(indumentariaDeportiva2);
+agregarAlCarrito(indumentariaDeportiva1);
 
 // como elimino un producto del carrito
 function eliminarDelCarrito(codigo){
@@ -77,10 +74,6 @@ function eliminarDelCarrito(codigo){
 }
 
 eliminarDelCarrito(101); //llamado de la funcion "eliminar al carrito"
-
-agregarAlCarrito(indumentariaDeportiva3);// funcion de agregar al carrito
-agregarAlCarrito(indumentariaDeportiva2);
-
 
 //total del costo de mi carrito, con el metodo .reduce acumulo cada elemento de mi array 
 const totalPrecioCarrito = [ 14000, 4000]
