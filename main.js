@@ -20,7 +20,7 @@ if ( promedio > 6){
 }
 else {
     console.log ("no aprobaste" + promedio);
-} // concatenamos con el + promedio y mostramos el mensaje y el valor del priomedio
+} // concatenamos con el + promedio y mostramos el mensaje y el valor del promedio
 
 
 
@@ -37,38 +37,72 @@ alert (salida)
 
 // -----carrito----
 
-const carrito = []; //declaracion de array vacio
 
-function agregarAlCarrito(producto){
-    console.log("agregaste al carrito " + producto);
-    carrito.push(indumentariaDeportiva1);// agregamos el producto al carrito con el .push
-    console.log(carrito);
-}
 
-//objeto funcion constructora
+//-------------------DOM---interactuando con html---------------------
+
+//cambio titulo h1
+
+let titulo = document.getElementById('titulo');
+titulo.innerHTML= 'CloudSport Jujuy';
+
+//cambio parrafo
+
+let parrafo = document.getElementById('parrafo');
+parrafo.innerHTML= 'Tienda Virtual - Envios a toda la provincia';
+
+/*objeto funcion constructora
 function IndumentariaDeportiva(codigo, producto, stock, precio){
     this.codigo = codigo;
     this.producto = producto;
     this.stock = stock;
     this.precio = precio;    
 }
-//parametros de los objetos
-const indumentariaDeportiva1 = new IndumentariaDeportiva( 101, "Calzas Adidas", 15, 9000);
-const indumentariaDeportiva2 = new IndumentariaDeportiva( 102, "Zapatillas Adidas", 5, 14000);
-const indumentariaDeportiva3 = new IndumentariaDeportiva( 103, "Remera Adidas", 3, 4000);
-const indumentariaDeportiva4 = new IndumentariaDeportiva( 104, "Zapatillas Topper", 5, 7800);
-const indumentariaDeportiva5 = new IndumentariaDeportiva( 105, "Zapatillas Nike", 2, 14000);
-const indumentariaDeportiva6 = new IndumentariaDeportiva( 106, "Zapatillas Puma", 2, 12000);
+por cuestiones esteticasguardo estos productos por ahora aca
+{ id:104, producto: "Zapatillas Topper", stock: 5, precio: 7800},
+    { id:105, producto: "Zapatillas Nike", stock: 2, precio: 24000},
+    { id:106, producto: "Zapatillas Puma", stock: 2, precio: 12000},
+*/ 
+//movi aca el array por que no aparecian las card, no se por que pero de tanto tocar funciono asi
+const productos = [
+    { id:101, producto: "Calzas Adidas", stock: 15, precio: 9000},
+    { id:102, producto: "Zapatillas Adidas", stock: 5, precio: 14000},
+    { id:103, producto: "Remera Adidas", stock: 3, precio: 4000},
+    ];
+    
+
+//card con productos
+
+let cards = document.getElementById('card');
+for (const producto of productos){
+    let contenedorCard= document.createElement("div");
+    contenedorCard.innerHTML=`
+    <h2> ${producto.producto}</h2>
+    <p> ${producto.precio}</p>
+    <button> Agregar al carrito</button>`;
+    cards.appendChild(contenedorCard);
+}
 
 
-// funcion de agregar al carrito
-agregarAlCarrito(indumentariaDeportiva3);
-agregarAlCarrito(indumentariaDeportiva2);
-agregarAlCarrito(indumentariaDeportiva1);
+const carrito = []; //declaracion de array vacio
 
-// como elimino un producto del carrito
-function eliminarDelCarrito(codigo){
-    const index = carrito.findIndex((indumentaria) => indumentaria.codigo === codigo);
+function agregarAlCarrito(producto){
+    console.log("agregaste al carrito " + producto);
+    carrito.push(103);// agregamos el producto al carrito con el .push
+    console.log(carrito);
+}
+
+
+
+
+//funcion de agregar al carrito
+agregarAlCarrito(101);
+agregarAlCarrito(102);
+agregarAlCarrito(103);
+
+// como elimino un producto del carrito(FUNCIONES DE ORDEN SUPERIOR)
+function eliminarDelCarrito(idProducto){
+    const index = carrito.findIndex((producto) => producto.id === idProducto);
     carrito.splice(index, 1);//metodo splice elimina uno o varios elementos en cualquier posicion
     console.log(carrito);
 }
@@ -80,4 +114,3 @@ const totalPrecioCarrito = [ 14000, 4000]
 const total = totalPrecioCarrito.reduce((acumulador, elemento) => acumulador + elemento , 0)
 
 console.log (total)
-
