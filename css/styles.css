@@ -10,6 +10,26 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+ #cards {
+  display: flex;
+  align-items: center;
+  width: 100vh;
+  height: 80rem;
+  margin: 1rem 1rem 1rem 1rem;
+ }
+ .card{
+  display: flex;
+  a
+  width: 100vh;
+  height: 30rem;
+  margin: 1rem 1rem 1rem 1rem;
+  padding: 1.5rem;
+ }
+ .img{
+  width: 12rem;
+  height: 10rem;
+ }
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;

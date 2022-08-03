@@ -35,7 +35,7 @@ let salida = "Bienvenido/a a Cloudsport Jujuy " + entrada ;
 alert (salida)
 
 
-// -----carrito----
+
 
 
 
@@ -51,50 +51,60 @@ titulo.innerHTML= 'CloudSport Jujuy';
 let parrafo = document.getElementById('parrafo');
 parrafo.innerHTML= 'Tienda Virtual - Envios a toda la provincia';
 
-/*objeto funcion constructora
-function IndumentariaDeportiva(codigo, producto, stock, precio){
-    this.codigo = codigo;
-    this.producto = producto;
-    this.stock = stock;
-    this.precio = precio;    
-}
-por cuestiones esteticasguardo estos productos por ahora aca
-{ id:104, producto: "Zapatillas Topper", stock: 5, precio: 7800},
-    { id:105, producto: "Zapatillas Nike", stock: 2, precio: 24000},
-    { id:106, producto: "Zapatillas Puma", stock: 2, precio: 12000},
+/*por cuestiones esteticasguardo estos productos por ahora aca
+
 */ 
-//movi aca el array por que no aparecian las card, no se por que pero de tanto tocar funciono asi
+
+const carrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
+
+document.getElementById("cart-total").innerHTML = carrito.length;
+
+
+
+ //mis productos( agregar mas )
 const productos = [
-    { id:101, producto: "Calzas Adidas", stock: 15, precio: 9000},
-    { id:102, producto: "Zapatillas Adidas", stock: 5, precio: 14000},
-    { id:103, producto: "Remera Adidas", stock: 3, precio: 4000},
+   
+    { id:101, articulo: "Calzas Adidas", precio: 9000, imagen:"https://cdn.solodeportes.com.ar/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/1/0/10001efv3374001-1.jpg", categoria: "urbanas"},
+    { id:102, articulo: "Zapatillas Nike", precio: 34000, imagen:"https://http2.mlstatic.com/D_NQ_NP_980863-MLA41478015972_042020-O.jpg", categoria: "urbanas"},
+    { id:103, articulo: "Zapatillas Nike", precio: 4000, imagen: "https://www.moov.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwbe1df35c/products/NI_AV3918-200/NI_AV3918-200-1.JPG", categoria:"urbanas" },
+    { id:104, articulo: "Zapatillas Vans", precio: 7800, imagen:"https://d3ugyf2ht6aenh.cloudfront.net/stores/001/633/637/products/vn000d5ib8c_11-59654e477e71986c0216248929985208-1024-1024.png", categoria: "zapatillas"},
+    { id:105, articulo: "Zapatillas Nike", precio: 24000, imagen: "https://resources.claroshop.com/medios-plazavip/s2/10687/910289/5cbcc7853fb76-150bf846-90bf-4cea-9cea-f76677c08bcb-1600x1600.jpg?scale=340", categoria: "zapatillas"},
+    { id:106, articulo: "Zapatillas Reebok Turbo", precio: 12000, imagen: "https://cdn.solodeportes.com.ar/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/z/a/zapatillas-reebok-royal-turbo-impuls-mujer-blanca-111010eg9449001-1.jpg", categoria: "zapatillas"},
     ];
     
 
-//card con productos
-
-let cards = document.getElementById('card');
+//CARDS con productos (agregar las categorias)
+let cards = document.getElementById("cards");
 for (const producto of productos){
-    let contenedorCard= document.createElement("div");
-    contenedorCard.innerHTML=`
-    <h2> ${producto.producto}</h2>
-    <p> ${producto.precio}</p>
-    <button> Agregar al carrito</button>`;
-    cards.appendChild(contenedorCard);
+    const idButton = `add-cart${producto.id}`
+    let contenedorCard = document.createElement("div");
+    contenedorCard.innerHTML = 
+`<div class="card">
+    <p>$${producto.precio}</p>
+    <img class="img" src="${producto.imagen}">
+    <h4>${producto.articulo}</h4>
+    <div class="text-center"><a class="btn btn-outline-dark mt-auto"id='${idButton}'href="#">Agregar</a></div>
+    `;
+cards.appendChild(contenedorCard);
+console.log(contenedorCard);
 }
+//<a class="boton" id="${idButton}" >Añadir Al Carrito</a></div>
+//eventos
+productos.forEach((producto) => {
+    const idButton = `add-cart${producto.id}` 
+    document.getElementById(idButton).addEventListener('click', () => {
+        carrito.push(producto);
+
+        document.getElementById("cart-total").innerHTML = `${carrito.length}  - $${total}`;
+        localStorage.setItem("totalCarrito", carrito.length);
+        const total = carrito.reduce((acc, el) => acc + el.precio, 0);
+        alert("Total a pagar: $" + total);
+    })
+});
 
 
-const carrito = []; //declaracion de array vacio
 
-function agregarAlCarrito(producto){
-    console.log("agregaste al carrito " + producto);
-    carrito.push(103);// agregamos el producto al carrito con el .push
-    console.log(carrito);
-}
-
-
-
-
+/*
 //funcion de agregar al carrito
 agregarAlCarrito(101);
 agregarAlCarrito(102);
@@ -114,3 +124,4 @@ const totalPrecioCarrito = [ 14000, 4000]
 const total = totalPrecioCarrito.reduce((acumulador, elemento) => acumulador + elemento , 0)
 
 console.log (total)
+*/
