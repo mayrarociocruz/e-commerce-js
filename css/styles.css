@@ -14,21 +14,32 @@
  #cards {
   display: flex;
   align-items: center;
-  width: 100vh;
-  height: 80rem;
+  width: auto;
+  height: auto;
   margin: 1rem 1rem 1rem 1rem;
  }
  .card{
   display: flex;
-  a
-  width: 100vh;
-  height: 30rem;
+  width: 20rem;
+  height: 20rem;
   margin: 1rem 1rem 1rem 1rem;
   padding: 1.5rem;
  }
+ .card p{
+  font-weight: bold;
+  color: rgb(43, 88, 102);
+ }
+ .card h4{
+  font-size: 1.2rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: rgb(43, 88, 102);
+ }
  .img{
-  width: 12rem;
+  width: 10rem;
   height: 10rem;
+ }
+ .card div a{
+  background-color: #12a0bc3b;
  }
 :root {
   --bs-blue: #0d6efd;
