@@ -10,7 +10,25 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-
+ .bodybg{
+background-color: #04414d32;
+ }
+ 
+ .bg{
+  
+  background: linear-gradient(rgba(0, 0, 0, 0.404), rgba(0, 0, 0, 0.404)), url("https://images.pexels.com/photos/68433/pexels-photo-68433.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+ }
+#titulo {
+  
+  font-style: oblique;
+}
+#parrafo{
+  font-size: 1.5rem;
+}
  #cards {
   display: flex;
   align-items: center;
@@ -30,16 +48,25 @@
   color: rgb(43, 88, 102);
  }
  .card h4{
-  font-size: 1.2rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 0.9rem;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, serif;
   color: rgb(43, 88, 102);
+  
  }
  .img{
   width: 10rem;
-  height: 10rem;
+  height: auto;
+  align-items: center;
+  transition: ease-in-out;
+ }
+ .img:hover {
+  transform: scale(2);
  }
  .card div a{
   background-color: #12a0bc3b;
+ }
+ .carrito{
+  font-size: 1rem;
  }
 :root {
   --bs-blue: #0d6efd;

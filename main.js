@@ -29,11 +29,11 @@ else {
 //----------------------PRIMER ENTREGA DEL PROYECTO FINAL-------------------------------
 
 
-//mensaje de bienvenida al usuario
+/*mensaje de bienvenida al usuario
 let entrada = prompt("Ingrese su nombre");
 let salida = "Bienvenido/a a Cloudsport Jujuy " + entrada ;
 alert (salida)
-
+*/
 
 
 
@@ -49,11 +49,9 @@ titulo.innerHTML= 'CloudSport Jujuy';
 //cambio parrafo
 
 let parrafo = document.getElementById('parrafo');
-parrafo.innerHTML= 'Tienda Virtual - Envios a toda la provincia';
+parrafo.innerHTML= 'Tienda Virtual';
 
-/*por cuestiones esteticasguardo estos productos por ahora aca
-
-*/ 
+//carrito, local storage y json
 
 const carrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
 
@@ -64,14 +62,22 @@ document.getElementById("cart-total").innerHTML = carrito.length;
  //mis productos( agregar mas )
 const productos = [
    
-    { id:101, articulo: "Zapatillas Adidas", precio: 21000, imagen:"https://cdn.solodeportes.com.ar/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/1/0/10001efv3374001-1.jpg", categoria: "urbanas"},
-    { id:102, articulo: "Zapatillas Nike", precio: 36000, imagen:"https://http2.mlstatic.com/D_NQ_NP_980863-MLA41478015972_042020-O.jpg", categoria: "urbanas"},
-    { id:103, articulo: "Zapatillas Nike", precio: 40000, imagen: "https://www.moov.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwbe1df35c/products/NI_AV3918-200/NI_AV3918-200-1.JPG", categoria:"urbanas" },
-    { id:104, articulo: "Zapatillas Vans", precio: 20800, imagen:"https://d3ugyf2ht6aenh.cloudfront.net/stores/001/633/637/products/vn000d5ib8c_11-59654e477e71986c0216248929985208-1024-1024.png", categoria: "zapatillas"},
-    { id:105, articulo: "Zapatillas Nike", precio: 17000, imagen: "https://resources.claroshop.com/medios-plazavip/s2/10687/910289/5cbcc7853fb76-150bf846-90bf-4cea-9cea-f76677c08bcb-1600x1600.jpg?scale=340", categoria: "zapatillas"},
-    { id:106, articulo: "Zapatillas Reebok Turbo", precio: 21000, imagen: "https://cdn.solodeportes.com.ar/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/z/a/zapatillas-reebok-royal-turbo-impuls-mujer-blanca-111010eg9449001-1.jpg", categoria: "zapatillas"},
+    { id:101, articulo: "Zapatillas Adidas Originals Superstar", precio: 23000, imagen:"https://cdn.solodeportes.com.ar/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/1/0/10001efv3374001-1.jpg", categoria: "urbanas"},
+    { id:102, articulo: "Zapatillas Nike Air Force 1 07 Lv8 Nba", precio: 36000, imagen:"https://cdn.flightclub.com/TEMPLATE/156034/1.jpg", categoria: "urbanas"},
+    { id:103, articulo: "Jordan 1 Retro Low Slip Desert Ore Light Cream", precio: 40000, imagen: "https://www.moov.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwbe1df35c/products/NI_AV3918-200/NI_AV3918-200-1.JPG", categoria:"urbanas" },
+    { id:104, articulo: "Zapatillas Vans Old Skool Hi -Sk8-Hi", precio: 23800, imagen:"https://d3ugyf2ht6aenh.cloudfront.net/stores/001/245/791/products/e36b6f29-14e3-4798-874f-704706acde6e-7dd65cc9febc5d5d2c16516268559860-1024-1024.jpg", categoria: "zapatillas"},
+    { id:105, articulo: "Zapatillas Nike Air Max Sasha", precio: 17000, imagen: "https://www.thenextsole.com/storage/images/916783-004.png", categoria: "zapatillas"},
+    { id:106, articulo: "Reebok Royal Turbo Impulse", precio: 21000, imagen: "https://cdn.solodeportes.com.ar/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/z/a/zapatillas-reebok-royal-turbo-impuls-mujer-blanca-111010eg9449001-1.jpg", categoria: "zapatillas"},
+    { id:107, articulo: "Zapatillas Nike Running Nike Renew Rival", precio: 17900, imagen:"https://www.dexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw2664173d/products/NI_BV0799-300/NI_BV0799-300-1.JPG", categoria: "zapatillas"},
+    { id:108, articulo:"Zapatilla Puma Vikky Staked Stud Negro/tachas", precio: 17000, imagen:"https://http2.mlstatic.com/D_NQ_NP_907709-MLA31024512629_062019-O.jpg", categoria: "urbanas"},
+    { id:109, articulo:"Zapatillas Puma basket mujer platform trace", precio: 17000, imagen:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPRn7ln1C7ViP27gU373VG5MQ1btR3ENenhw&usqp=CAU", categoria: "urbanas"},
+    //{ id: , articulo: , precio: , imagen:"", categoria: },
+    //{ id: , articulo: , precio: , imagen:"", categoria: },
+    //{ id: , articulo: , precio: , imagen:"", categoria: },
+   // { id: , articulo: , precio: , imagen:"", categoria: },
     ];
-    
+ 
+
 
 //CARDS con productos (agregar las categorias)
 let cards = document.getElementById("cards");
@@ -80,25 +86,31 @@ for (const producto of productos){
     let contenedorCard = document.createElement("div");
     contenedorCard.innerHTML = 
 `<div class="card">
-    <p class= "precio">$${producto.precio}</p>
     <img class="img" src="${producto.imagen}">
-    <h4 class="nombre">${producto.articulo}</h4>
-    <div class="boton"><a class="btn btn-outline-dark mt-auto"id='${idButton}'href="#">Agregar</a></div>
+    <h4>${producto.articulo}</h4>
+    <p>$${producto.precio}</p>
+    <div class="carrito"><a class="btn btn-outline-dark mt-auto"id='${idButton}'href="#">Agregar al carrito</a></div>
     `;
 cards.appendChild(contenedorCard);
 console.log(contenedorCard);
 }
-//<a class="boton" id="${idButton}" >Añadir Al Carrito</a></div>
-//eventos
+
+//-------------------EVENTOS-----------------------------------
 productos.forEach((producto) => {
     const idButton = `add-cart${producto.id}` 
-    document.getElementById(idButton).addEventListener('click', () => {
+    document.getElementById(idButton).addEventListener('click', () => { //podria cambiarlo por el .onclick = ()=>{
         carrito.push(producto);
+        console.log(carrito)
+
+        //localStorage.setItem('carrito', JSON.stringify(carrito));
+
+        const total = carrito.reduce((acc, el) => acc + el.precio, 0);
 
         document.getElementById("cart-total").innerHTML = `${carrito.length}  - $${total}`;
-        localStorage.setItem("totalCarrito", carrito.length);
-        const total = carrito.reduce((acc, el) => acc + el.precio, 0);
-        alert("Total a pagar: $" + total);
+        //localStorage.setItem("totalCarrito", carrito.length);
+        
+        //document.getElementById("card-compra").innerHTML = "";
+        console.log("cart-total");
     })
 });
 
