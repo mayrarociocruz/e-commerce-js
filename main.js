@@ -77,12 +77,12 @@ const productos = [
    // { id: , articulo: , precio: , imagen:"", categoria: },
     ];
 
-//---------OPERADORES AVANZADOS:desestructuracion del array-------------------
+//---------OPERADORES AVANZADOS:DESESTRUCTURACION Y SPREAD DEL ARRAY-------------------
 
-const [,, a, b] = productos // las comillas simbolizarian los id 101 y 102
+const [,, a, b] = productos //desestructuracion las comillas simbolizarian los id 101 y 102
 console.log(a)//me trae el producto con el id 103
 console.log(b)// me trae el producto con el id 104
-console.log(...productos)
+console.log(...productos)// spread
 
 
 //-----------CARDS con productos (agregar las categorias)
@@ -110,7 +110,7 @@ productos.forEach((producto) => {
         console.log(carrito)
 
         //-----------OPERADORES AVANZADOS: OPERADORES TERNARIOS------------------------------
-        let categoria     
+        let categoria //seria una simplificacion del if y el else en una sola linea de codigo
         categoria==productos.urbanas ? console.log("zapatillas urbanas") : console.log("zapatillas deportivas")
         //localStorage.setItem('carrito', JSON.stringify(carrito));
 
