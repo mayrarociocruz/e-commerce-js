@@ -29,12 +29,24 @@ else {
 //----------------------PRIMER ENTREGA DEL PROYECTO FINAL-------------------------------
 
 
-/*mensaje de bienvenida al usuario
+//mensaje de bienvenida al usuario
+/*
 let entrada = prompt("Ingrese su nombre");
 let salida = "Bienvenido/a a Cloudsport Jujuy " + entrada ;
-alert (salida)
-*/
+alert (salida)*/
 
+Swal.fire({
+    title: 'BIENVENIDO/A A CLOUDSPORT JUJUY',
+    width: 600,
+    padding: '3em',
+    color: '#716add',
+    background: '#fff',
+    backdrop: `
+      rgba(0,0,123,0.4)
+      left top
+      no-repeat
+    `
+  })
 
 
 
@@ -99,6 +111,7 @@ for (const producto of productos){
     `;
 cards.appendChild(contenedorCard);
 console.log(contenedorCard);
+
 }
 
 
@@ -108,7 +121,13 @@ productos.forEach((producto) => {
     document.getElementById(idButton).addEventListener('click', () => { //podria cambiarlo por el .onclick = ()=>{
         carrito.push(producto);
         console.log(carrito)
-
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Se ha agregado al carrito correctamente',
+            showConfirmButton: false,
+            timer: 1500
+          })
         //-----------OPERADORES AVANZADOS: OPERADORES TERNARIOS------------------------------
         let categoria //seria una simplificacion del if y el else en una sola linea de codigo
         categoria==productos.urbanas ? console.log("zapatillas urbanas") : console.log("zapatillas deportivas")
