@@ -76,10 +76,16 @@ const productos = [
     //{ id: , articulo: , precio: , imagen:"", categoria: },
    // { id: , articulo: , precio: , imagen:"", categoria: },
     ];
- 
+
+//---------OPERADORES AVANZADOS:desestructuracion del array-------------------
+
+const [,, a, b] = productos // las comillas simbolizarian los id 101 y 102
+console.log(a)//me trae el producto con el id 103
+console.log(b)// me trae el producto con el id 104
+console.log(...productos)
 
 
-//CARDS con productos (agregar las categorias)
+//-----------CARDS con productos (agregar las categorias)
 let cards = document.getElementById("cards");
 for (const producto of productos){
     const idButton = `add-cart${producto.id}`
@@ -95,13 +101,17 @@ cards.appendChild(contenedorCard);
 console.log(contenedorCard);
 }
 
-//-------------------EVENTOS-----------------------------------
+
+//-------------------EVENTOS---------------------------------------
 productos.forEach((producto) => {
     const idButton = `add-cart${producto.id}` 
     document.getElementById(idButton).addEventListener('click', () => { //podria cambiarlo por el .onclick = ()=>{
         carrito.push(producto);
         console.log(carrito)
 
+        //-----------OPERADORES AVANZADOS: OPERADORES TERNARIOS------------------------------
+        let categoria     
+        categoria==productos.urbanas ? console.log("zapatillas urbanas") : console.log("zapatillas deportivas")
         //localStorage.setItem('carrito', JSON.stringify(carrito));
 
         const total = carrito.reduce((acc, el) => acc + el.precio, 0);
@@ -113,6 +123,13 @@ productos.forEach((producto) => {
         console.log("cart-total");
     })
 });
+
+
+
+
+
+
+
 
 
 
