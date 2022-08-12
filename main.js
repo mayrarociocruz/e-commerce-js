@@ -35,6 +35,7 @@ let entrada = prompt("Ingrese su nombre");
 let salida = "Bienvenido/a a Cloudsport Jujuy " + entrada ;
 alert (salida)*/
 
+//--------------------------USO DE LIBRERIAS---------------------------------
 Swal.fire({
     title: 'BIENVENIDO/A A CLOUDSPORT JUJUY',
     width: 600,
@@ -121,7 +122,7 @@ productos.forEach((producto) => {
     document.getElementById(idButton).addEventListener('click', () => { //podria cambiarlo por el .onclick = ()=>{
         carrito.push(producto);
         console.log(carrito)
-        Swal.fire({
+        Swal.fire({ //--------------USO DE LIBRERIAS------------
             position: 'top-end',
             icon: 'success',
             title: 'Se ha agregado al carrito correctamente',
