@@ -55,37 +55,52 @@ Swal.fire({
 //-------------------DOM---interactuando con html---------------------
 
 //cambio titulo h1
-
 let titulo = document.getElementById('titulo');
 titulo.innerHTML= 'CloudSport Jujuy';
 
 //cambio parrafo
-
 let parrafo = document.getElementById('parrafo');
 parrafo.innerHTML= 'Tienda Virtual';
 
 //carrito, local storage y json
+const carrito = JSON.parse(localStorage.getItem("carrito")) ?? [];//?? reemplazaria a un if pregunta si es null o undefined
 
-const carrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
+//la logica que suma todos los precios de los productos que estan en el carrito
+const total = carrito.reduce((acc, productos) => acc + productos.precio, 0);
 
-document.getElementById("cart-total").innerHTML = carrito.length;
+//este total lo escribimos en el html 
+document.getElementById("cart-total").innerHTML = `${carrito.length}  - $${total}`;
+
+//----MODAL CARRITO
+
+function verCarrito() {
+    document.getElementById("modal-bodys").innerHTML = " "
+    carrito.forEach((producto) => {
+        document.getElementById("modal-bodys").innerHTML += `
+        <img src="${producto.imagen}" style="width:50px">
+        <h4>${producto.articulo}</h4>
+        <p>$${producto.precio}</p>
+        `
+       
+    })
+   
+}
 
 
-
- //mis productos( agregar mas )
+ //mis productos( agregar mas)
 const productos = [
    
     { id:101, articulo: "Zapatillas Adidas Originals Superstar", precio: 23000, imagen:"https://cdn.solodeportes.com.ar/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/1/0/10001efv3374001-1.jpg", categoria: "urbanas"},
     { id:102, articulo: "Zapatillas Nike Air Force 1 07 Lv8 Nba", precio: 36000, imagen:"https://cdn.flightclub.com/TEMPLATE/156034/1.jpg", categoria: "urbanas"},
     { id:103, articulo: "Jordan 1 Retro Low Slip Desert Ore Light Cream", precio: 40000, imagen: "https://www.moov.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwbe1df35c/products/NI_AV3918-200/NI_AV3918-200-1.JPG", categoria:"urbanas" },
-    { id:104, articulo: "Zapatillas Vans Old Skool Hi -Sk8-Hi", precio: 23800, imagen:"https://d3ugyf2ht6aenh.cloudfront.net/stores/001/245/791/products/e36b6f29-14e3-4798-874f-704706acde6e-7dd65cc9febc5d5d2c16516268559860-1024-1024.jpg", categoria: "zapatillas"},
+    { id:104, articulo: "Zapatillas Vans Old Skool Hi -Sk8-Hi", precio: 23800, imagen:"https://d3ugyf2ht6aenh.cloudfront.net/stores/001/245/791/products/e36b6f29-14e3-4798-874f-704706acde6e-7dd65cc9febc5d5d2c16516268559860-1024-1024.jpg", categoria: "urbanas"},
     { id:105, articulo: "Zapatillas Nike Air Max Sasha", precio: 17000, imagen: "https://www.thenextsole.com/storage/images/916783-004.png", categoria: "zapatillas"},
     { id:106, articulo: "Reebok Royal Turbo Impulse", precio: 21000, imagen: "https://cdn.solodeportes.com.ar/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/z/a/zapatillas-reebok-royal-turbo-impuls-mujer-blanca-111010eg9449001-1.jpg", categoria: "zapatillas"},
     { id:107, articulo: "Zapatillas Nike Running Nike Renew Rival", precio: 17900, imagen:"https://www.dexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw2664173d/products/NI_BV0799-300/NI_BV0799-300-1.JPG", categoria: "zapatillas"},
     { id:108, articulo:"Zapatilla Puma Vikky Staked Stud Negro/tachas", precio: 17000, imagen:"https://http2.mlstatic.com/D_NQ_NP_907709-MLA31024512629_062019-O.jpg", categoria: "urbanas"},
     { id:109, articulo:"Zapatillas Puma basket mujer platform trace", precio: 17000, imagen:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPRn7ln1C7ViP27gU373VG5MQ1btR3ENenhw&usqp=CAU", categoria: "urbanas"},
-    //{ id: , articulo: , precio: , imagen:"", categoria: },
-    //{ id: , articulo: , precio: , imagen:"", categoria: },
+    { id:110 , articulo:"Zapatillas Puma Nrgy Rupture" , precio: 12600 , imagen:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFMPZzx85eL76BxwZCA6JGSNpljgCSSn-_4Q&usqp=CAU", categoria: "zapatillas"},
+    { id:111, articulo:"Zapatillas Nike Ebernon Mid Negras" , precio: 31000, imagen:"https://cdn.solodeportes.com.ar/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/5/1/510010aq1773002-1.jpg", categoria: "urbanas" },
     //{ id: , articulo: , precio: , imagen:"", categoria: },
    // { id: , articulo: , precio: , imagen:"", categoria: },
     ];
@@ -114,6 +129,25 @@ cards.appendChild(contenedorCard);
 console.log(contenedorCard);
 
 }
+//------------------FILTRANDO PRODUCTOS POR CATEGORIA--------------
+
+function filtrarCategoria(categoria){
+    document.getElementById("cards").innerHTML = " "; //para que no se acumulen limpio el html
+    const filtrados = productos.filter((producto) => producto.categoria == categoria);
+
+    filtrados.forEach((producto) => {
+        const idButton = `add-cart${producto.id}` 
+    document.getElementById("cards").innerHTML+= 
+        `<div class="card">
+        <img class="img" src="${producto.imagen}">
+        <h4>${producto.articulo}</h4>
+        <p>$${producto.precio}</p>
+        <div class="carrito"><a class="btn btn-outline-dark mt-auto"id='${idButton}'href="#">Agregar al carrito</a></div>
+        `;
+                
+    })
+}
+    
 
 
 //-------------------EVENTOS---------------------------------------
@@ -121,28 +155,44 @@ productos.forEach((producto) => {
     const idButton = `add-cart${producto.id}` 
     document.getElementById(idButton).addEventListener('click', () => { //podria cambiarlo por el .onclick = ()=>{
         carrito.push(producto);
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        const total = carrito.reduce((acc, el) => acc + el.precio, 0);
+        document.getElementById("cart-total").innerHTML = `${carrito.length}  - $${total}`;
+        document.getElementById("modal-bodys").innerHTML = ""
+        carrito.forEach((producto) => {
+            document.getElementById("modal-bodys").innerHTML += `
+            <img src="${producto.imagen}" style="width:50px">
+            <h4>${producto.articulo}</h4>
+            <p>$${producto.precio}</p>
+            `
+        document.getElementById("cart-total").innerHTML = `${carrito.length}  - $${total}`;
+        })
+
         console.log(carrito)
         Swal.fire({ //--------------USO DE LIBRERIAS------------
             position: 'top-end',
             icon: 'success',
-            title: 'Se ha agregado al carrito correctamente',
+            title: 'Se agrego al carrito ' + producto.articulo,
             showConfirmButton: false,
             timer: 1500
           })
+         
         //-----------OPERADORES AVANZADOS: OPERADORES TERNARIOS------------------------------
         let categoria //seria una simplificacion del if y el else en una sola linea de codigo
         categoria==productos.urbanas ? console.log("zapatillas urbanas") : console.log("zapatillas deportivas")
         //localStorage.setItem('carrito', JSON.stringify(carrito));
 
-        const total = carrito.reduce((acc, el) => acc + el.precio, 0);
-
-        document.getElementById("cart-total").innerHTML = `${carrito.length}  - $${total}`;
-        //localStorage.setItem("totalCarrito", carrito.length);
         
+        //localStorage.setItem("totalCarrito", carrito.length);
+       
+    
         //document.getElementById("card-compra").innerHTML = "";
         console.log("cart-total");
     })
 });
+
+
+
 
 
 

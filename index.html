@@ -28,22 +28,47 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorias</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">Deportivo</a></li>
-                                <li><a class="dropdown-item" href="#!">Urbano</a></li>
-                                <li><a class="dropdown-item" href="#!">Niños/as</a></li>
+                                <li><a class="dropdown-item" onclick="filtrarCategoria('zapatillas')">Deportivo</a></li>
+                                <li><a class="dropdown-item" onclick="filtrarCategoria('urbanas')">Urbano</a></li>
+                                <!--  <li><a class="dropdown-item" href="#!">Niños/as</a></li>
                                 <li><a class="dropdown-item" href="#!">Hombre</a></li>
-                                <li><a class="dropdown-item" href="#!">Mujer</a></li>
+                                <li><a class="dropdown-item" href="#!">Mujer</a></li>  -->
                             </ul>
                         </li>
                     </ul>
+
+
                     <form class="d-flex">
-                        <button class="btn btn-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>Carrito<span id="cart-total" class="badge text-white ms-1 rounded-pill">0</span>
-                        </button>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn cart-total btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="verCarrito()">Ver Carrito<span id="cart-total" class="badge text-white ms-1 rounded-pill" >0</span>
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header" >
+                            <h5 class="modal-title" >Total de la compra</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modal-bodys"></div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vaciar carrito</button>
+                            <button type="button" class="btn btn-primary">Seguir comprando</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                                <!--    <button class="btn btn-dark" type="submit">
+                                        <i class="bi-cart-fill me-1"></i>Ver Carrito<span id="cart-total" class="badge text-white ms-1 rounded-pill">0</span>
+                                    </button> -->
                     </form>
                 </div>
             </div>
         </nav>
+
+
+
         <!-- Header-->
         <header class="bg py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -54,16 +79,16 @@
             </div>
         </header>
         
+        <section>
+        
+        </section>
 
-        <!-- Section-->
+        <!--Cards Section-->
 
         <section class="py-5 container-fluid row row-cols-1 row-cols-sm-3 g-4 " id="cards">
         </section>
-        
 
-       
         <!-- Footer-->
-        
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; CloudSport Jujuy 2022</p></div>
         </footer>
