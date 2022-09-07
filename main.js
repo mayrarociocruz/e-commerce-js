@@ -50,12 +50,16 @@ document.addEventListener('DOMContentLoaded', () =>{
 //ARRAY DE LOS PRODUCTOS
 let productosTotal = [];
 
+
 //---------------------------VACIAR CARRITO BOTON-------------------------------------
 botonVaciar.addEventListener('click', () => {
     carrito.length = 0;
     actualizarCarrito();
 })
+
+
 //-------------LOGICA PARA TRAER A LOS PRODUCTOS DEL JSON USANDO FETCH--------------------
+
     fetch('productos.json')
         .then((response) => response.json())
         .then((productos) => {
@@ -86,7 +90,7 @@ botonVaciar.addEventListener('click', () => {
                 icon: 'success',
                 title: 'Se agrego al carrito ' + producto.articulo,
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1200
             })
             })
         })
@@ -122,6 +126,7 @@ const eliminarDelCarrito = (prodId) => {
     const indice = carrito.indexOf(item);
     carrito.splice(indice, 1);
     actualizarCarrito();
+    console.log(carrito)
 }
 
 //------------------INSERTAR PRODUCTOS EN EL CARRITO - MODAL----------------------
@@ -131,7 +136,7 @@ const actualizarCarrito = () => {
 //PARA QUE NO SE ACUMULEN LOS PRODUCTOS
 contenedorCarrito.innerHTML = ""
 
-    
+    //POR CADA PRODUCTO AGREGADO AL CARRITO CREO UN DIV EN EL MODAL
         carrito.forEach((prod) => {
             const div = document.createElement('div')
             div.innerHTML = `
@@ -139,9 +144,9 @@ contenedorCarrito.innerHTML = ""
             <h4 class="titulo-modal">${prod.articulo}</h4>
             <p>$${prod.precio}</p>
             <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
-            <button type="button" class="eliminar" onclick="eliminarDelCarrito()">Eliminar</button><hr>
+            <button type="button" class="eliminar" onclick="eliminarDelCarrito(${prod.id})">Eliminar</button><hr>
             `
-    //CREO UN DIV POR CADA PRODUCTO Y CON EL APPEND APARECEN EN EL CARRITO    
+    //Y CON EL APPEND APARECEN EN EL MODAL-CARRITO    
     contenedorCarrito.appendChild(div)
 
     //PARA NO PERDER LA CANTIDAD AL ACTUALIZAR
