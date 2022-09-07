@@ -1,30 +1,3 @@
-const listadoNotas = [5, 7, 3]; //declaracion del array
-
-const auxIndice = 1;
-
-listadoNotas[2]; //3 la posicion 2 en el listado tiene un valor de 3
-listadoNotas[0]; //5 se cuenta desde cero 
-listadoNotas[auxIndice] //7 la constante me dice que es la posicion 1 y el valor qu hay ahi es 7
-
-let contadorDeNotas = 0;
-
-for(let i = 0; i < 3; i++){
-    contadorDeNotas = contadorDeNotas + listadoNotas[i]; // seria la posicion 0, valor 5 
-} //esto lo que hace es acumular en cada pasada. seria un sumador de notas
-
-const promedio = contadorDeNotas/3; //la suma total dividido 3
-console.log(promedio); //resultado seria 5
-
-if ( promedio > 6){
-    console.log ("felicitaciones aprobaste" + promedio);
-}
-else {
-    console.log ("no aprobaste" + promedio);
-} // concatenamos con el + promedio y mostramos el mensaje y el valor del promedio
-
-
-
-
 //--------------------------USO DE LIBRERIAS--------------------------------------------
 Swal.fire({
     title: 'BIENVENIDO/A A CLOUDSPORT JUJUY',
@@ -33,14 +6,11 @@ Swal.fire({
     color: '#12a0bc3b;',
     background: '#fff',
     backdrop: `
-      #12a0bc34
-      left top
-      no-repeat
+        #12a0bc34
+        left top
+        no-repeat
     `
-  })
-
-
-
+})
 
 //-------------------DOM---interactuando con html---------------------
 
@@ -53,32 +23,35 @@ let parrafo = document.getElementById('parrafo');
 parrafo.innerHTML= 'Tienda Virtual';
 
 //carrito, local storage y json
-const carrito = JSON.parse(localStorage.getItem("carrito")) ?? [];//?? reemplazaria a un if pregunta si es null o undefined
+//const carrito = JSON.parse(localStorage.getItem("carrito")) ?? []; // ?? reemplazaria a un if pregunta si es null o undefined
+
 
 //la logica que suma todos los precios de los productos que estan en el carrito
-const total = carrito.reduce((acc, productos) => acc + productos.precio, 0);
+//const total = carrito.reduce((acc, productos) => acc + productos.precio, 0);
 
 //este total lo escribimos en el html 
-document.getElementById("cart-total").innerHTML = `${carrito.length}  - $${total}`;
+//document.getElementById("cart-total").innerHTML = `${carrito.length}  - $${total}`;
 
-//----MODAL CARRITO
-
+//-------------------------MODAL CARRITO-------------------------
+/*
 function verCarrito() {
     document.getElementById("modal-bodys").innerHTML = " "
     carrito.forEach((producto) => {
         document.getElementById("modal-bodys").innerHTML += `
-        <img src="${producto.imagen}" style="width:50px">
-        <h4>${producto.articulo}</h4>
+        <img src="${producto.imagen}" style="width:30px">
+        <h4 class="title-modal">${producto.articulo}</h4>
         <p>$${producto.precio}</p>
+        <button type="button" id="eliminar" onClick="eliminarArticulo()">Eliminar</button>
+        <br></br>
         `
        
     })
    
 }
+*/
 
-
- //mis productos( agregar mas)
-const productos = [
+ //--------------------------MIS PRODUCTOS-----------------------------
+/*const productos = [
    
     { id:101, articulo: "Zapatillas Adidas Originals Superstar", precio: 23000, imagen:"https://cdn.solodeportes.com.ar/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/1/0/10001efv3374001-1.jpg", categoria: "urbanas"},
     { id:102, articulo: "Zapatillas Nike Air Force 1 07 Lv8 Nba", precio: 36000, imagen:"https://cdn.flightclub.com/TEMPLATE/156034/1.jpg", categoria: "urbanas"},
@@ -93,7 +66,7 @@ const productos = [
     { id:111, articulo:"Zapatillas Nike Ebernon Mid Negras" , precio: 31000, imagen:"https://cdn.solodeportes.com.ar/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/5/1/510010aq1773002-1.jpg", categoria: "urbanas" },
     { id:112, articulo:"Camiseta Titular Argentina 22 Adidas" , precio: 17000, imagen:"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/611f58bb7b4444bbb62eaeca012c57dd_9366/Camiseta_Titular_Argentina_22_Blanco_HF1495_01_laydown.jpg", categoria: "nuevo" },
     { id:113, articulo:"Botines Adidas X SPEEDPORTAL.1 FG VERDE" , precio: 62999, imagen:"https://assets.adidas.com/images/w_600,f_auto,q_auto/0104cd8e08ce4ded9d22ae9b010ec3a3_9366/X_SPEEDPORTAL.1_FG_Verde_GW8426_22_model.jpg", categoria:"nuevo" },
-    { id:114, articulo: "Zapatillas Adidas Originals Superstar Rich Mnisi Ot Tech Mujer", precio: 38.000, imagen:"https://newsport.vteximg.com.br/arquivos/ids/13852204-1000-1000/GW0523-A.jpg?v=637921939524600000", categoria:"nuevo" },
+    { id:114, articulo: "Zapatillas Adidas Originals Superstar Rich Mnisi Ot Tech Mujer", precio: 38000, imagen:"https://newsport.vteximg.com.br/arquivos/ids/13852204-1000-1000/GW0523-A.jpg?v=637921939524600000", categoria:"nuevo" },
     { id:115 , articulo: "Zapatillas Adidas ZX Wavian X RICH MNISI Blanca" , precio: 38999, imagen:"https://newsport.vteximg.com.br/arquivos/ids/14033352-1000-1000/GW0517-A.jpg?v=637940157908370000", categoria: "nuevo"},
    // { id: , articulo: , precio: , imagen:"", categoria: },
    // { id: , articulo: , precio: , imagen:"", categoria: },
@@ -101,15 +74,17 @@ const productos = [
    // { id: , articulo: , precio: , imagen:"", categoria: },
     ];
 
-//---------OPERADORES AVANZADOS:DESESTRUCTURACION Y SPREAD DEL ARRAY-------------------
+*/
+//-----------OPERADORES AVANZADOS:DESESTRUCTURACION Y SPREAD DEL ARRAY-------------------
 
-const [,, a, b] = productos //desestructuracion las comillas simbolizarian los id 101 y 102
+/*const [,, a, b] = productos //desestructuracion las comillas simbolizarian los id 101 y 102
 console.log(a)//me trae el producto con el id 103
 console.log(b)// me trae el producto con el id 104
 console.log(...productos)// spread
+*/
 
-
-//-----------CARDS con productos (agregar las categorias)
+//-------------------------CARDS con productos-------------------------------
+/*
 let cards = document.getElementById("cards");
 for (const producto of productos){
     const idButton = `add-cart${producto.id}`
@@ -125,28 +100,170 @@ cards.appendChild(contenedorCard);
 console.log(contenedorCard);
 
 }
-//------------------FILTRANDO PRODUCTOS POR CATEGORIA--------------
+*/
+/* 
+let productos =[];
+fetch('../scripts/productos.json')
+.then((response) => response.json())
+.then((productosJSON)=> {productos = productosJSON}); 
+*/ 
+//------------------------------------------------
+
+//CARDS CON PRODUCTOS
+const cards = document.getElementById('new-cards');
+
+//MODAL
+const contenedorCarrito = document.getElementById('carrito-contenedor'); 
+
+//BOTON VACIAR CARRITO
+const botonVaciar = document.getElementById('vaciar-carrito');
+
+//REFLEJAR LA CANTIDAD TOTAL DE PRODUCTOS EN EL BOTON DEL CARRITO
+const contadorCarrito = document.getElementById("cart-total");
+
+//SUMAR EL TOTAL EN EL MODAL DEL CARRITO
+const precioTotal = document.getElementById('total-compra');
+
+//CARRITO
+let carrito = [];
+
+document.addEventListener('DOMContentLoaded', () =>{
+    if (localStorage.getItem('carrito')){
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        actualizarCarrito();
+    }
+})
+
+//ARRAY DE LOS PRODUCTOS
+let productosTotal = [];
+
+//---------------------------VACIAR CARRITO BOTON-------------------------------------
+botonVaciar.addEventListener('click', () => {
+    carrito.length = 0;
+    actualizarCarrito();
+})
+//-------------LOGICA PARA TRAER A LOS PRODUCTOS DEL JSON USANDO FETCH--------------------
+    fetch('productos.json')
+        .then((response) => response.json())
+        .then((productos) => {
+
+        //POR CADA UNO DE ESOS PRODUCTOS GENERO UNAS CARDS 
+        productos.forEach((producto) => {
+            productosTotal.push({id:`${producto.id}`, cantidad:`${producto.cantidad}`, articulo:`${producto.articulo}`, precio:`${producto.precio}`, imagen: `${producto.imagen}`, categoria: `${producto.categoria}`});
+            let contenedorCard = document.createElement("div");
+            contenedorCard.innerHTML = `
+            <div class="card">
+            <img class="img" src="${producto.imagen}">
+            <h4>${producto.articulo}</h4>
+            <p>$${producto.precio}</p>
+            <button id="agregar${producto.id}" class="boton-agregar">Agregar al carrito</button>
+            </div>
+            `
+            //SE REFLEJAN EN EL HTML
+            cards.appendChild(contenedorCard);
+
+            //PARA QUE EJECUTE LA FUNCION DE AGREGAR AL CARRITO
+            const boton = document.getElementById(`agregar${producto.id}`)
+            boton.addEventListener('click' , () => {
+            agregarAlCarrito(producto.id)
+
+            //USO DE LIBRERIAS
+            Swal.fire({ 
+                position: 'top-end',
+                icon: 'success',
+                title: 'Se agrego al carrito ' + producto.articulo,
+                showConfirmButton: false,
+                timer: 1500
+              })
+            })
+        })
+    })
+    
+//--------------------------AGREGAR AL CARRITO---------------------------------------   
+
+const agregarAlCarrito = (prodId) => {
+    //CAMBIAR LA CANTIDAR DE UN MISMO ARTICULO EN EL CARRITO
+    const existe = carrito.some (prod => prod.id == prodId)
+    if (existe){
+        const prod = carrito.map(prod => {
+            if(prod.id == prodId){
+                prod.cantidad++
+            }
+        })
+    } else{
+    const item = productosTotal.find((prod) => prod.id == prodId)
+    carrito.push(item);
+    console.log(carrito)
+    }
+
+    actualizarCarrito();
+    
+}
+
+//--------------------------ELIMINAR DEL CARRITO--------------------------------------
+
+const eliminarDelCarrito = (prodId) => {
+
+    //ELIMINO LOS PRODUCTOS QUE YA ESTAN EN EL CARRITO (PROD)
+    const item = carrito.find((prod) => prod.id == prodId);
+    const indice = carrito.indexOf(item);
+    carrito.splice(indice, 1);
+    actualizarCarrito();
+}
+
+//------------------INSERTAR PRODUCTOS EN EL CARRITO - MODAL----------------------
+
+const actualizarCarrito = () => {
+
+//PARA QUE NO SE ACUMULEN LOS PRODUCTOS
+contenedorCarrito.innerHTML = ""
+
+    
+        carrito.forEach((prod) => {
+            const div = document.createElement('div')
+            div.innerHTML = `
+            <img src="${prod.imagen}" style="width:50px">
+            <h4 class="titulo-modal">${prod.articulo}</h4>
+            <p>$${prod.precio}</p>
+            <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
+            <button type="button" class="eliminar" onclick="eliminarDelCarrito()">Eliminar</button><hr>
+            `
+    //CREO UN DIV POR CADA PRODUCTO Y CON EL APPEND APARECEN EN EL CARRITO    
+    contenedorCarrito.appendChild(div)
+
+    //PARA NO PERDER LA CANTIDAD AL ACTUALIZAR
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+})
+contadorCarrito.innerText= carrito.length;
+console.log(contadorCarrito);
+precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0);
+}
+
+//------------------------------FILTRANDO PRODUCTOS POR CATEGORIA-----------------------------------
+
 
 function filtrarCategoria(categoria){
-    document.getElementById("cards").innerHTML = " "; //para que no se acumulen limpio el html
-    const filtrados = productos.filter((producto) => producto.categoria == categoria);
+    document.getElementById("new-cards").innerHTML = " "; //para que no se acumulen limpio el html
+    const filtrados = productosTotal.filter((prod) => prod.categoria == categoria);
 
-    filtrados.forEach((producto) => {
-        const idButton = `add-cart${producto.id}` 
-    document.getElementById("cards").innerHTML+= 
+    filtrados.forEach((prod) => {
+        const boton = `add-cart${prod.id}` 
+    document.getElementById("new-cards").innerHTML+= 
         `<div class="card">
-        <img class="img" src="${producto.imagen}">
-        <h4>${producto.articulo}</h4>
-        <p>$${producto.precio}</p>
-        <div class="carrito"><a class="btn btn-outline-dark mt-auto"id='${idButton}'href="#">Agregar al carrito</a></div>
+            <img class="img" src="${prod.imagen}">
+            <h4>${prod.articulo}</h4>
+            <p>$${prod.precio}</p>
+            <button id="agregar${prod.id}" class="boton-agregar">Agregar al carrito</button>
+            </div>
         `;
-                
+         console.log(filtrados)       
     })
 }
-    
 
 
-//-------------------EVENTOS---------------------------------------
+
+//-----------------------------------EVENTOS---------------------------------------
+/*
 productos.forEach((producto) => {
     const idButton = `add-cart${producto.id}` 
     document.getElementById(idButton).addEventListener('click', () => { //podria cambiarlo por el .onclick = ()=>{
@@ -161,12 +278,15 @@ productos.forEach((producto) => {
             <img src="${producto.imagen}" style="width:50px">
             <h4>${producto.articulo}</h4>
             <p>$${producto.precio}</p>
-            <button type="button"><img class="tacho" src="https://cdn-icons-png.flaticon.com/512/40/40002.png" style="width:30px"></button>
+            <button type="button" onClick="eliminarArticulo()">Eliminar</button>
             `
         })
+        document.getElementById("totalCompra").innerHTML = `${carrito.length}  - $${total}`;
 
         console.log(carrito)
-        Swal.fire({ //--------------USO DE LIBRERIAS------------
+
+//----------------------------USO DE LIBRERIAS----------------------------
+        Swal.fire({ 
             position: 'top-end',
             icon: 'success',
             title: 'Se agrego al carrito ' + producto.articulo,
@@ -187,6 +307,23 @@ productos.forEach((producto) => {
         console.log("cart-total");
     })
 });
+*/
+
+
+//-------------------------ELIMINAR DEL CARRITO-------------------------------------------
+
+
+/*
+function eliminarArticulo(eliminar){
+    carrito.splice(eliminar,1);
+    //localStorage.setItem("carrito", JSON.stringify(carrito));
+    const total = carrito.reduce((acc, el) => acc - el.precio, 0);
+    document.getElementById("cart-total").innerHTML = `${carrito.length}  - $${total}`;
+    console.log(eliminarArticulo)
+
+}
+eliminarArticulo();
+*/
 
 
 

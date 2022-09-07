@@ -20,16 +20,16 @@
     </head>
     <body class="bodybg">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-blue" >
+        <nav class="navbar navbar-expand-lg" id="barra-nav">
             <div class="container px-4 px-lg-5">
-                <a class="cloud navbar-brand" href="index.html">CloudSport Jujuy</a>
+                <a class="cloud navbar-brand" href="index.html">CLOUDSPORT JUJUY</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" >
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="cloud nav-link active" aria-current="page" href="index.html">Inicio</a></li>
-                        <li class="nav-item"><a class="cloud nav-link" href="#!" onclick="filtrarCategoria('nuevo')">Lo Nuevo-2022</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="cloud nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorias</a>
+                        <li class="cloud nav-item"><a class="cloud nav-link active" aria-current="page" href="index.html">INICIO</a></li>
+                        <li class="cloud nav-item"><a class="cloud nav-link" href="#!" onclick="filtrarCategoria('nuevo')">LO NUEVO-2022</a></li>
+                        <li class="cloud nav-item dropdown">
+                            <a class="cloud nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CATEGORIAS</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" onclick="filtrarCategoria('zapatillas')">Deportivo</a></li>
                                 <li><a class="dropdown-item" onclick="filtrarCategoria('urbanas')">Urbano</a></li>
@@ -40,26 +40,26 @@
 
                     <form class="d-flex">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn cart-total btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="verCarrito()">Ver Carrito<span id="cart-total" class="badge text-white ms-1 rounded-pill" >0</span>
+                    <button type="button" id="boton-car" class="btn cart-total btn-sbecondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ver Carrito<span id="cart-total" class="badge text-white ms-1 rounded-pill">0</span>
                     </button>
 
                     <!-- Modal -->
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                            <div class="modal-content">
+                            <div class="modal-content" >
                             <div class="modal-header" >
                             <h5 class="modal-title" >Total de la compra</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body" id="modal-bodys"></div>
+                            <div class="modal-body" id="carrito-contenedor"></div>
                             
                             <div class="total d-flex">
-                                <div class="total-titulo">Total de la compra: </div>
-                                <div class="cart-total" id="cart-total">$0</div>
+                                <div class="total-titulo">Total a pagar: $ </div>
+                                <b><div id="total-compra">$0</div></b>
                             </div>
                             <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vaciar carrito</button>
-                            <button type="button" class="btn btn-primary">Comprar Carrito</button>
+                            <button type="button" id="vaciar-carrito" class="btn btn-secondary" data-bs-dismiss="modal">Vaciar carrito</button>
+                            <button type="button" class="btn btn-primary"><a href="https://mpago.la/3226ema" target="_blank"rel="noopener noreferrer" id="comprar-carrito">Comprar Carrito</a></button>
                             </div>
                         </div>
                         </div>
@@ -69,6 +69,12 @@
                                     </button> -->
                     </form>
                 </div>
+            </div>
+
+            <div class="redes">
+                <a href="https://www.instagram.com/cloudsportjujuy/?hl=es-la" target="_blank" rel="noopener noreferrer"><img src="https://cdn-icons-png.flaticon.com/512/1051/1051364.png" width="25px" alt="cloudsportjujuy instagram"></a>
+
+                <a href="https://m.facebook.com/cloudsport.jujuy/about?locale" target="_blank" rel="noopener noreferrer"><img src="https://cdn-icons-png.flaticon.com/512/1051/1051360.png" width="25px" alt="cloudsport jujuy facebook"></a>
             </div>
         </nav>
 
@@ -88,6 +94,9 @@
             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
+                        <img src="https://wokerio.vtexassets.com/assets/vtex.file-manager-graphql/images/1eb5443f-0283-497d-9ce6-40987aa12578___db7db69910dc3c884e39da1e1c07e0a0.jpg" class="d-block w-100" alt="adidas" onclick="filtrarCategoria('nuevo')">
+                    </div>
+                    <div class="carousel-item">
                         <img src="https://sportingio.vtexassets.com/assets/vtex.file-manager-graphql/images/dd28201b-bd9c-4f23-9679-af10910605f1___05f5da8f464e22790afe8fccbb27093b.jpg" class="d-block w-100"  alt="messi ARGENTINA" onclick="filtrarCategoria('nuevo')">
                     </div>
                     <div class="carousel-item">
@@ -109,12 +118,50 @@
 
         <!--Cards Section-->
 
-        <section class="py-5 container-fluid row row-cols-1 row-cols-sm-3 g-4 " id="cards">
+        <!--<section class="py-5 container-fluid row row-cols-1 row-cols-sm-3 g-4 " id="cards"></section> -->
+        <section class="py-5 container-fluid row row-cols-1 row-cols-sm-4 g-4 " id="new-cards"></section>
+
+        <section>
+            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://wokerio.vtexassets.com/assets/vtex.file-manager-graphql/images/e4695bc9-9430-4924-bd33-0bed248a24d1___013dfa2c3486848413e538d7256b1e06.jpg" class="d-block w-100"  alt="mes" onclick="filtrarCategoria('nuevo')">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://wokerio.vtexassets.com/assets/vtex.file-manager-graphql/images/0596d948-a7f7-4e73-a389-56dc5ac9c3ed___f79f22882680447e719d6b13a0ee1067.png" class="d-block w-100"  alt="mes" onclick="filtrarCategoria('nuevo')">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://wokerio.vtexassets.com/assets/vtex.file-manager-graphql/images/c0308d86-19e5-4685-9b54-8efa33ec2f9a___6a2c52602d9d97fe7366a9f1afa41954.jpg" class="d-block w-100" alt="messi botines" onclick="filtrarCategoria('nuevo')">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://sportingio.vtexassets.com/assets/vtex.file-manager-graphql/images/aa7e142f-28fc-43bb-a2a6-6ec773d98e91___c650f5d4f06f193103725de10ed5c938.jpg" class="d-block w-100" alt="adidas" onclick="filtrarCategoria('nuevo')">
+                    </div>
+
+                    </div><button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </section>
 
+        
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; CloudSport Jujuy 2022</p></div>
+        <footer class="py-5" id="footer">
+            <div class="envios">
+            <a href="https://www.correoargentino.com.ar" target="_blank" rel="noopener noreferrer"><img  src="https://cdn-icons-png.flaticon.com/512/411/411763.png" width="30px" alt="cloudsport jujuy facebook"></a><p>Envios a domicilio</p>
+        </div>
+            <div class="container"><p class="cloud-final">Copyright &copy; CLOUDSPORT JUJUY 2022</p>
+            <p class="cloud-final"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384023.png" width="25px" alt="whatsapp">+54 9 388 514-1529</p></div>
+
+            <div class="redes">
+                <a href="https://www.instagram.com/cloudsportjujuy/?hl=es-la" target="_blank" rel="noopener noreferrer"><img src="https://cdn-icons-png.flaticon.com/512/1051/1051364.png" width="25px" alt="cloudsportjujuy instagram"></a>
+
+                <a href="https://m.facebook.com/cloudsport.jujuy/about?locale" target="_blank" rel="noopener noreferrer"><img src="https://cdn-icons-png.flaticon.com/512/1051/1051360.png" width="25px" alt="cloudsport jujuy facebook"></a>
+            </div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
